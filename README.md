@@ -66,7 +66,7 @@ pnpm install
 pnpm dev
 ```
 
-- Runs on: `http://localhost:5173`
+- Runs on: `http://localhost:3000`
 
 ## 🐳 Running with Docker
 
@@ -79,7 +79,7 @@ docker compose up --build
 2. **Access services:**
 
    - **Backend** → `http://localhost:8000`
-   - **Frontend** → `http://localhost:5173`
+   - **Frontend** → `http://localhost:3000`
 
 3. **Stop containers:**
 
