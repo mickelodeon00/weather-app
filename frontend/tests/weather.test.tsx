@@ -75,7 +75,7 @@ describe('WeatherCard', () => {
 
 
 
-jest.mock("@/utils/axios");
+jest.mock("@/lib/axios");
 const mockedAxios = baseAxios as jest.Mocked<typeof baseAxios>;
 
 describe("fetchWeather", () => {
