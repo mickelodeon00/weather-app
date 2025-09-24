@@ -1,5 +1,5 @@
 import type { WeatherData } from "@/types/weather";
-import baseAxios from "@/utils/axios";
+import baseAxios from "@/lib/axios";
 import { AxiosError } from 'axios';
 export type SafeResult<T> =
   | [T, null]

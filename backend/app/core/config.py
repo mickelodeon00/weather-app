@@ -19,8 +19,6 @@ class Settings(BaseSettings):
     return v.split(",") if v else []
 
   
-  # class Config:
-  #   env_file = ".env"
   model_config = ConfigDict(env_file=".env")
 
 

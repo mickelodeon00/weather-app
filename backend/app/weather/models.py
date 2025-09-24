@@ -13,10 +13,10 @@ class WeatherLocation(BaseModel):
 
 
 class WeatherCurrent(BaseModel):
-    temp_c: float = Field(..., description="Temperature in Celsius")
-    humidity: int = Field(..., ge=0, le=100, description="Humidity percentage")
-    wind_kph: float = Field(..., description="Wind speed in km/h")
-    condition: str = Field(..., description="Weather condition")
+  temp_c: float = Field(..., description="Temperature in Celsius")
+  humidity: int = Field(..., ge=0, le=100, description="Humidity percentage")
+  wind_kph: float = Field(..., description="Wind speed in km/h")
+  condition: str = Field(..., description="Weather condition")
 
 
 class WeatherAPIResponse(BaseModel):

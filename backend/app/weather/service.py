@@ -28,16 +28,16 @@ class WeatherService:
         return WeatherAPIResponse(
           location=data["location"],
           current={
-              "temp_c": data["current"]["temp_c"],
-              "humidity": data["current"]["humidity"],
-              "wind_kph": data["current"]["wind_kph"],
-              "condition": data["current"]["condition"]["text"],
+            "temp_c": data["current"]["temp_c"],
+            "humidity": data["current"]["humidity"],
+            "wind_kph": data["current"]["wind_kph"],
+            "condition": data["current"]["condition"]["text"],
           },
         )
       
 
       except httpx.HTTPStatusError as e:
-        if e.response.status_code == 400:
+        if e.response.status_code == 400 or e.response.status_code == 404:
           raise HTTPException(status_code=404, detail=f"City '{city}' not found")
         else:
           raise HTTPException(status_code=500, detail="Weather service error")

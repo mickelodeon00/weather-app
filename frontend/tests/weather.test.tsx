@@ -1,6 +1,6 @@
 import { fetchWeather } from '@/action/weather';
 import WeatherCard from '@/components/weather/weather-card';
-import baseAxios from '@/utils/axios';
+import baseAxios from '@/lib/axios';
 import { render } from '@testing-library/react';
 
 

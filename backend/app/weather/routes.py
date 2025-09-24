@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from app.weather.service import WeatherService
 from app.weather.models import WeatherAPIResponse
 
