@@ -13,12 +13,11 @@ jobs:
       run:
         working-directory: backend
     steps:
-      - name: Create test env file
-        run: |
-          echo "WEATHER_API_KEY=fake-key" >> .env
-
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Create test env file
+        run: echo "WEATHER_API_KEY=fake-key" >> .env
 
       - name: Set up Python
         uses: actions/setup-python@v5
