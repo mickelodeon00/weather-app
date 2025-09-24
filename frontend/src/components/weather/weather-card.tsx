@@ -1,8 +1,6 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-// import { Badge } from "@/components/ui/badge";
 import {
-  // Thermometer, 
   Droplets,
   Wind,
   MapPin,
@@ -61,8 +59,8 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ data }) => {
   return (
     <div className="w-full max-w-2xl mx-auto">
       <Card className={`${weatherBg} border-0 shadow-2xl overflow-hidden`}>
-        <CardHeader className="text-center pb-6">
-          <div className="flex items-center justify-center gap-2 text-muted-foreground mb-4">
+        <CardHeader id="header" className="text-center pb-6">
+          <div id="location" className="flex items-center justify-center gap-2 text-muted-foreground mb-4">
             <MapPin className="h-4 w-4" />
             <span className="text-sm font-medium">
               {data.location.name}, {data.location.country}
@@ -87,14 +85,14 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ data }) => {
           </div>
         </CardHeader>
 
-        <CardContent>
+        <CardContent id="content">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-white/70 backdrop-blur-sm rounded-xl p-6 border border-white/20">
               <div className="flex items-center gap-4">
                 <div className="p-3 rounded-full bg-blue-100">
                   <Droplets className="h-5 w-5 text-blue-500" />
                 </div>
-                <div>
+                <div id='humidity'>
                   <div className="text-sm text-muted-foreground font-medium">Humidity</div>
                   <div className="text-2xl font-bold text-foreground">{data.current.humidity}%</div>
                   <div className="text-xs text-muted-foreground">

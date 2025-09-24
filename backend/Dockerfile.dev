@@ -1,0 +1,22 @@
+FROM python:3.13-slim
+
+WORKDIR /app
+
+ENV PYTHONPATH=/app
+ENV PYTHONUNBUFFERED=1
+
+RUN pip install uv
+
+COPY pyproject.toml uv.lock ./
+RUN uv sync --frozen
+
+# Copy .env file
+COPY .env ./
+
+# Copy source code initially
+COPY app/ ./app/
+
+EXPOSE 8000
+
+# Use --reload for auto-restart on file changes
+CMD ["uv", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload", "--log-level", "info"]

@@ -12,7 +12,7 @@ const Home: React.FC = () => {
   const [city, setCity] = useState("");
   const [searchCity, setSearchCity] = useState("");
 
-  const { data, isLoading, isError } = useWeather(searchCity);
+  const { data, isLoading, isError, error } = useWeather(searchCity);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,7 +79,7 @@ const Home: React.FC = () => {
         <Alert className="max-w-md mx-auto mb-6 border-red-200 bg-red-50/80 backdrop-blur-sm">
           <AlertCircle className="h-4 w-4 text-red-600" />
           <AlertDescription className="text-red-700 font-medium">
-            Unable to fetch weather data. Please check the city name and try again.
+            {error.message || "Unable to fetch weather data. Please check the city name and try again."}
           </AlertDescription>
         </Alert>
       )}

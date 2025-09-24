@@ -1,28 +1,53 @@
 import type { WeatherData } from "@/types/weather";
 import baseAxios from "@/utils/axios";
-// import axios from "axios";
+import { AxiosError } from 'axios';
+export type SafeResult<T> =
+  | [T, null]
+  | [null, AxiosError];
+
+/**
+ * Wrap any async function call and return a tuple: [result, error]
+ * @param fn A function that returns a Promise<T>
+ */
+export async function safe<T>(fn: () => Promise<T>): Promise<SafeResult<T>> {
+  try {
+    const result = await fn();
+    return [result, null];
+  } catch (err) {
+    return [null, err as AxiosError];
+  }
+}
 
 
 
 export const fetchWeather = async (city: string): Promise<WeatherData> => {
-  const { data } = await baseAxios.get<WeatherData>(`/weather/${city}`);
-  return data;
+  const [data, error] = await safe(() => baseAxios.get<WeatherData>(`/weather/${city}`))
+  if (error) {
+    if (error.response?.status === 404) {
+      throw new Error('City not found. Please check the city name and try again');
+    }
+
+    if (error.response?.status === 500) {
+      throw new Error('Weather service is currently unavailable. Please try again later');
+    }
+
+    if (error.response?.status === 429) {
+      throw new Error('Too many requests. Please try again later');
+    }
+
+    if (error.code === 'ECONNABORTED' || error.code === 'TIMEOUT') {
+      throw new Error('Request timeout. Please check your connection and try again');
+    }
+
+    if (!error.response) {
+      throw new Error('Network error. Please check your internet connection');
+    }
+
+    throw new Error('Failed to fetch weather data. Please try again');
+  }
+
+
+  return data.data
+
 };
 
-// export const fetchWeather = async (city: string): Promise<WeatherData> => {
-//   try {
-//     const { data } = await baseAxios.get<WeatherData>(`/weather/${city}`);
-//     return data;
-//   } catch (error: any) {
-//     if (axios.isAxiosError(error) && error.response) {
-//       const status = error.response.status;
-//       const message = error.response.data?.detail || error.message;
-
-//       // Feature-specific error handling
-//       throw { status, message };
-//     }
-
-//     // Network or unexpected error
-//     throw { status: 500, message: 'Service temporarily unavailable' };
-//   }
-// };

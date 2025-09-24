@@ -14,12 +14,3 @@ export interface WeatherData {
     condition: string
   }
 }
-
-// export interface WeatherData {
-//   city: string
-//   temperature: number
-//   humidity: number
-//   windSpeed: number
-//   condition: string
-//   country: string
-// }

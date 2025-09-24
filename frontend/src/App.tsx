@@ -12,7 +12,7 @@ function App() {
             <div className="p-4 rounded-full bg-primary/10 shadow-lg">
               <Cloud className="h-8 w-8 text-primary" />
             </div>
-            <h1 className="text-5xl font-black bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+            <h1 className="font-display text-5xl font-black bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
               Weather Forecast
             </h1>
           </div>
