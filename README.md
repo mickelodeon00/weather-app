@@ -122,5 +122,5 @@ uv run pytest -v
 - Get your **WeatherAPI.com API key** and set it in the backend `.env`
 - **Access services** (both Docker modes):
   - **Backend** → `http://localhost:8000`
-  - **Frontend** → `http://localhost:5173`
+  - **Frontend** → `http://localhost:3000`
 - **Stop containers**: `docker compose down` (or `docker compose -f docker-compose.dev.yml down`)
