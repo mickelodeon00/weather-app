@@ -11,6 +11,9 @@ services:
     volumes:
       - ./backend/app:/app/app:ro
       - ./backend/.env:/app/.env:ro
+    env_file:
+      # Also inject as environment variables
+      - ./backend/.env
     environment:
       - PYTHONPATH=/app
       - PYTHONUNBUFFERED=1
@@ -31,6 +34,7 @@ services:
       - ./frontend/vite.config.ts:/app/vite.config.ts:ro
     environment:
       - NODE_ENV=development
+      - VITE_API_BASE_URL=http://backend:8000
     depends_on:
       - backend
     networks:

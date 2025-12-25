@@ -11,7 +11,7 @@ COPY pyproject.toml uv.lock ./
 RUN uv sync --frozen
 
 # Copy .env file first
-COPY .env ./
+# COPY .env ./
 
 # Copy source code
 COPY app/ ./app/
